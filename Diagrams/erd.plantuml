@@ -1,0 +1,79 @@
+@startuml
+
+hide circle
+hide stereotype
+
+skinparam linetype ortho
+skinparam RoundCorner 5
+skinparam Padding 1
+skinparam ArrowFontSize 12
+skinparam ClassBorderColor Black
+skinparam ClassBorderColor<<custom>> Blue
+
+entity **Legend** <<standard>> #CCFFEE {
+    (PK) = Primary Key
+    --
+    (PN) = Primary Name
+    * Required
+    + Recommended
+    Standard
+    <color:blue>Custom</color>
+}
+
+title  Entity Model
+
+footer Generated %date("yyyy-MM-dd") by UML Diagram Generator 1.2021.12.1 for XrmToolBox
+
+entity Comment <<custom>>
+{
+    --
+    *<color:blue>Comment (PN)</color>: String
+    <color:blue>DailyReport</color>: Lookup
+    <color:blue>MonthlyReport</color>: Lookup
+    <color:blue>Task</color>: Lookup
+    <color:blue>WeeklyReport</color>: Lookup
+}
+
+entity DailyReport <<custom>>
+{
+    --
+    <color:blue>ID (PN)</color>: String
+    <color:blue>CounselAndSuggestions</color>: Memo
+    <color:blue>Message</color>: Memo
+    <color:blue>Summary</color>: Memo
+    <color:blue>WeeklyReport</color>: Lookup
+}
+
+entity MonthlyReport <<custom>>
+{
+    --
+    <color:blue>ID (PN)</color>: String
+    <color:blue>Message</color>: Memo
+    <color:blue>Objective</color>: Memo
+    <color:blue>WorkSummaryOfNextMonth</color>: Memo
+}
+
+entity Task <<custom>>
+{
+    --
+    <color:blue>ID (PN)</color>: String
+    *<color:blue>Activity</color>: String
+    *<color:blue>StartTime</color>: DateTime
+    <color:blue>DailyReport</color>: Lookup
+}
+
+entity WeeklyReport <<custom>>
+{
+    --
+    <color:blue>ID (PN)</color>: String
+    <color:blue>Message</color>: Memo
+    <color:blue>MonthlyReport</color>: Lookup
+    <color:blue>Objective</color>: Memo
+}
+
+Task --{ Comment
+DailyReport --{ Comment
+WeeklyReport --{ Comment
+MonthlyReport --{ Comment
+
+@enduml
