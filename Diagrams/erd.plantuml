@@ -75,5 +75,8 @@ Task --{ Comment
 DailyReport --{ Comment
 WeeklyReport --{ Comment
 MonthlyReport --{ Comment
+WeeklyReport --{ DailyReport
+DailyReport --{ Task
+MonthlyReport --{ WeeklyReport
 
 @enduml
